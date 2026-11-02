@@ -1,0 +1,47 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { byOrder, published } from '../lib/format';
+import { readSite } from '../lib/store';
+import { KIND_LABELS, PRODUCT_KINDS } from '../lib/types';
+import { href } from '../lib/url';
+
+const produits = byOrder(published((await readSite()).produits));
+const anchors = { neuf: 'neuf', occasion: 'occasions', accessoire: 'accessoires' } as const;
+---
+
+<BaseLayout title="Vente" description="Vente de saxophones neufs et d’occasion, becs, anches et accessoires — atelier Vent Debout.">
+  <header class="page-header">
+    <div class="container-narrow">
+      <p class="eyebrow">Atelier</p>
+      <h1>Vente</h1>
+      <p class="tagline">Le neuf se commande à la demande et sort réglé. Les occasions passent à l’établi avant d’être proposées. Pour réserver, un appel ou un message suffit.</p>
+    </div>
+  </header>
+  <section class="block">
+    <div class="container" style="display:grid;gap:3.5rem">
+      {PRODUCT_KINDS.map((kind) => {
+        const rows = produits.filter((item) => item.kind === kind);
+        if (!rows.length) return null;
+        return (
+          <section id={anchors[kind]}>
+            <h2 class="section-title">{KIND_LABELS[kind]}</h2>
+            <div class="products">
+              {rows.map((item) => (
+                <article class:list={['product', { 'is-sold': !item.available }]}>
+                  {item.imageUrl && (
+                    <div class="visual"><img src={item.imageUrl} alt="" /></div>
+                  )}
+                  <p class="badge">{item.available ? KIND_LABELS[kind] : 'Vendu'}</p>
+                  <h3>{item.title}</h3>
+                  <p>{item.text}</p>
+                  <p class="price">{item.price}</p>
+                </article>
+              ))}
+            </div>
+          </section>
+        );
+      })}
+      <p class="more"><a class="btn btn-outline" href={href('/contact/')}>Réserver ou demander un instrument</a></p>
+    </div>
+  </section>
+</BaseLayout>

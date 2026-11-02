@@ -1,0 +1,494 @@
+{
+  "coords": {
+    "repairer": "Jérémie Faure",
+    "tagline": "Réparation et vente de saxophones",
+    "about": "Jérémie Faure tient Vent Debout, un petit atelier indépendant. Il reprend les saxophones des harmonies, des écoles et des musiciens qui jouent toutes les semaines : révision, brasure, retamponnage. L’instrument est examiné avant le devis, puis réglé avant de repartir.",
+    "email": "jeremf@ventsdebout.fr",
+    "phone": "06 32 18 47 55",
+    "address": "Zone artisanale Sainte-Croix\nAtelier 3\n64100 Bayonne",
+    "hours": "Mardi – vendredi : 9 h 30 – 12 h 30 et 14 h – 18 h 30\nSamedi : 10 h – 13 h\nLundi et dimanche : fermé\nUniquement sur rendez-vous",
+    "shipping": "Si vous habitez loin, envoyez des photos et décrivez le défaut. Le devis se confirme à l’ouverture de l’étui. Expédition en étui rigide, bocal calé à part, à l’adresse indiquée dans la réponse de l’atelier.",
+    "promo": "Sur rendez-vous — tarifs affichés, devis après examen",
+    "promoLabel": "Voir les tarifs",
+    "promoHref": "/tarifs/"
+  },
+  "tarifs": [
+    {
+      "id": "diag",
+      "category": "revision",
+      "title": "Diagnostic",
+      "detail": "Offert si le travail est confié à l’atelier. Sinon 25 €, déduits si vous revenez dans les trois mois.",
+      "price": "offert",
+      "featured": false,
+      "published": true,
+      "order": 1
+    },
+    {
+      "id": "rev-alto",
+      "category": "revision",
+      "title": "Révision alto ou ténor",
+      "detail": "Réglage des clés et des correspondances, contrôle du bouchage, huilage de la mécanique. Les tampons à changer sont signalés à part.",
+      "price": "160 €",
+      "featured": false,
+      "published": true,
+      "order": 2
+    },
+    {
+      "id": "rev-sop",
+      "category": "revision",
+      "title": "Révision soprano",
+      "detail": "Même travail que sur l’alto, avec un œil en plus sur le bocal et l’emboîtement, souvent plus sensibles sur un soprano.",
+      "price": "175 €",
+      "featured": false,
+      "published": true,
+      "order": 3
+    },
+    {
+      "id": "rev-bary",
+      "category": "revision",
+      "title": "Révision baryton",
+      "detail": "Clétage plus lourd, pavillon et clés graves compris. Le temps d’établi est plus long, le tarif aussi.",
+      "price": "240 €",
+      "featured": false,
+      "published": true,
+      "order": 4
+    },
+    {
+      "id": "revc-alto",
+      "category": "revision",
+      "title": "Révision complète alto ou ténor",
+      "detail": "Démontage, nettoyage, huilage, remplacement des tampons, lièges et feutres défectueux, puis réglage.",
+      "price": "290 €",
+      "featured": true,
+      "published": true,
+      "order": 5
+    },
+    {
+      "id": "revc-sop",
+      "category": "revision",
+      "title": "Révision complète soprano",
+      "detail": "Démontage, nettoyage, bouchage des éléments fatigués et réglage. Les brasures éventuelles sont chiffrées à part.",
+      "price": "310 €",
+      "featured": false,
+      "published": true,
+      "order": 6
+    },
+    {
+      "id": "revc-bary",
+      "category": "revision",
+      "title": "Révision complète baryton",
+      "detail": "Même principe que sur l’alto, avec les tampons de pavillon et la mécanique du registre grave.",
+      "price": "410 €",
+      "featured": false,
+      "published": true,
+      "order": 7
+    },
+    {
+      "id": "bras-cle",
+      "category": "brasure",
+      "title": "Brasure d’une clé ou d’une garde",
+      "detail": "Pièce dessoudée, reprise de la brasure et remise en place. Le réglage qui suit est compris.",
+      "price": "40 €",
+      "featured": true,
+      "published": true,
+      "order": 8
+    },
+    {
+      "id": "bras-pilier",
+      "category": "brasure",
+      "title": "Brasure d’un pilier",
+      "detail": "Pilier décollé ou fendu. Reprise à l’établi, puis contrôle du jeu de la clé.",
+      "price": "55 €",
+      "featured": false,
+      "published": true,
+      "order": 9
+    },
+    {
+      "id": "bras-cheminee",
+      "category": "brasure",
+      "title": "Reprise d’une cheminée",
+      "detail": "Ressoudage et planéité. Si le corps autour est enfoncé, le temps de débosselage s’ajoute au devis.",
+      "price": "à partir de 75 €",
+      "featured": false,
+      "published": true,
+      "order": 10
+    },
+    {
+      "id": "tam-sop-v",
+      "category": "retamponnage",
+      "title": "Soprano verni",
+      "detail": "Tampons, lièges, feutres et réglage. Débosselage et brasures en plus, s’il y en a.",
+      "price": "560 €",
+      "featured": false,
+      "published": true,
+      "order": 11
+    },
+    {
+      "id": "tam-sop-a",
+      "category": "retamponnage",
+      "title": "Soprano argenté",
+      "detail": "Même travail, avec le temps de nettoyage propre à l’argenture. Pas de réargenture à l’atelier.",
+      "price": "640 €",
+      "featured": false,
+      "published": true,
+      "order": 12
+    },
+    {
+      "id": "tam-alto-v",
+      "category": "retamponnage",
+      "title": "Alto verni",
+      "detail": "Jeu de tampons complet, lièges et feutres, réglage des correspondances. Le délai courant est d’environ quatre semaines.",
+      "price": "520 €",
+      "featured": true,
+      "published": true,
+      "order": 13
+    },
+    {
+      "id": "tam-alto-a",
+      "category": "retamponnage",
+      "title": "Alto argenté",
+      "detail": "Retamponnage complet et nettoyage adapté à la finition argentée.",
+      "price": "600 €",
+      "featured": false,
+      "published": true,
+      "order": 14
+    },
+    {
+      "id": "tam-ten-v",
+      "category": "retamponnage",
+      "title": "Ténor verni",
+      "detail": "Tampons, lièges, feutres, réglage. Les clés graves et le pavillon sont compris.",
+      "price": "590 €",
+      "featured": false,
+      "published": true,
+      "order": 15
+    },
+    {
+      "id": "tam-ten-a",
+      "category": "retamponnage",
+      "title": "Ténor argenté",
+      "detail": "Retamponnage complet. Une bosse ou une cheminée ovale se chiffre à part, après examen.",
+      "price": "680 €",
+      "featured": false,
+      "published": true,
+      "order": 16
+    },
+    {
+      "id": "tam-bar-v",
+      "category": "retamponnage",
+      "title": "Baryton verni",
+      "detail": "Gros tampons, notamment au pavillon, lièges et réglage de l’ensemble du clétage.",
+      "price": "760 €",
+      "featured": false,
+      "published": true,
+      "order": 17
+    },
+    {
+      "id": "tam-bar-a",
+      "category": "retamponnage",
+      "title": "Baryton argenté",
+      "detail": "Retamponnage complet d’un baryton argenté. Prévoir un délai un peu plus long que pour un alto.",
+      "price": "890 €",
+      "featured": false,
+      "published": true,
+      "order": 18
+    },
+    {
+      "id": "deboss",
+      "category": "divers",
+      "title": "Débosselage",
+      "detail": "Corps, culasse ou pavillon. Facturé au temps passé, annoncé avant de continuer si l’heure ne suffit pas.",
+      "price": "68 € / heure",
+      "featured": false,
+      "published": true,
+      "order": 19
+    },
+    {
+      "id": "liege",
+      "category": "divers",
+      "title": "Liège de bocal",
+      "detail": "Ancien liège retiré, nouveau liège ajusté pour que le bocal tienne sans forcer et sans fuite.",
+      "price": "26 €",
+      "featured": false,
+      "published": true,
+      "order": 20
+    },
+    {
+      "id": "ressort",
+      "category": "divers",
+      "title": "Ressort",
+      "detail": "Aiguille ou ressort plat, posé et tendu. La clé doit revenir sans point dur.",
+      "price": "18 €",
+      "featured": false,
+      "published": true,
+      "order": 21
+    },
+    {
+      "id": "axe",
+      "category": "divers",
+      "title": "Axe ou vis à refaire",
+      "detail": "Quand la pièce d’origine est foirée ou tordue au point de ne plus guider la clé.",
+      "price": "à partir de 35 €",
+      "featured": false,
+      "published": true,
+      "order": 22
+    }
+  ],
+  "realisations": [
+    {
+      "id": "real-sa80",
+      "title": "Deux piliers et un jeu de tampons",
+      "instrument": "Alto Selmer Super Action 80 II",
+      "year": "2026",
+      "text": "Retamponnage cuir, deux piliers de la clé de si désoudés, correspondances du fa# et du sib. Le musicien jouait en forçant tout le côté gauche.",
+      "imageUrl": "",
+      "featured": true,
+      "published": true,
+      "order": 1
+    },
+    {
+      "id": "real-yts23",
+      "title": "Sorti de l’étui de l’harmonie",
+      "instrument": "Ténor Yamaha YTS-23",
+      "year": "2026",
+      "text": "Laissé plusieurs années dans un étui humide. Révision complète, trois tampons d’eau, liège de bocal, ressorts de pavillon retendus.",
+      "imageUrl": "",
+      "featured": true,
+      "published": true,
+      "order": 2
+    },
+    {
+      "id": "real-sop",
+      "title": "Corps du bas après une chute",
+      "instrument": "Soprano droit",
+      "year": "2025",
+      "text": "Débosselage du corps du bas, reprise d’une cheminée ovalisée, puis bouchage partiel des notes graves. Le soprano a retrouvé ses graves sans forcer.",
+      "imageUrl": "",
+      "featured": false,
+      "published": true,
+      "order": 3
+    },
+    {
+      "id": "real-bary",
+      "title": "Pavillon et clé de ré #",
+      "instrument": "Baryton",
+      "year": "2025",
+      "text": "Tampons de pavillon percés, clé de ré# qui ne revenait plus. Retamponnage partiel du bas de l’instrument et ressorts neufs.",
+      "imageUrl": "",
+      "featured": false,
+      "published": true,
+      "order": 4
+    },
+    {
+      "id": "real-bocal",
+      "title": "Un bocal qui tournait dans le corps",
+      "instrument": "Bocal d’alto argenté",
+      "year": "2026",
+      "text": "Le liège était réduit à une feuille. Liège refait, emboîtement ajusté : le bocal tient, et il s’enlève encore à la main.",
+      "imageUrl": "",
+      "featured": false,
+      "published": true,
+      "order": 5
+    }
+  ],
+  "produits": [
+    {
+      "id": "neuf-280",
+      "kind": "neuf",
+      "title": "Yamaha YAS-280",
+      "price": "869 €",
+      "text": "Alto d’étude, neuf. Livré réglé à l’atelier, avec l’étui et le bec d’origine. Commande sous quelques jours.",
+      "imageUrl": "",
+      "available": true,
+      "featured": true,
+      "published": true,
+      "order": 1
+    },
+    {
+      "id": "neuf-t280",
+      "kind": "neuf",
+      "title": "Yamaha YTS-280",
+      "price": "999 €",
+      "text": "Ténor d’étude, neuf. Même principe : il passe sur l’établi avant de sortir, pour que les correspondances ferment vraiment.",
+      "imageUrl": "",
+      "available": true,
+      "featured": false,
+      "published": true,
+      "order": 2
+    },
+    {
+      "id": "occ-sa80",
+      "kind": "occasion",
+      "title": "Selmer Super Action 80 II",
+      "price": "2 450 €",
+      "text": "Alto, révisé ici en 2026. Tampons cuir, mécanique silencieuse, étui d’origine. À essayer sur rendez-vous.",
+      "imageUrl": "",
+      "available": true,
+      "featured": true,
+      "published": true,
+      "order": 3
+    },
+    {
+      "id": "occ-62",
+      "kind": "occasion",
+      "title": "Yamaha YAS-62",
+      "price": "1 850 €",
+      "text": "Alto, purple logo, vernis propre. Révision complète faite avant la mise en vente.",
+      "imageUrl": "",
+      "available": true,
+      "featured": false,
+      "published": true,
+      "order": 4
+    },
+    {
+      "id": "occ-yani",
+      "kind": "occasion",
+      "title": "Yanagisawa A-991",
+      "price": "2 750 €",
+      "text": "Alto argenté, très peu de jeu dans les axes. Contrôle et réglage faits à l’atelier.",
+      "imageUrl": "",
+      "available": true,
+      "featured": false,
+      "published": true,
+      "order": 5
+    },
+    {
+      "id": "occ-jup",
+      "kind": "occasion",
+      "title": "Jupiter JTS700",
+      "price": "640 €",
+      "text": "Ténor d’étude révisé, pour débuter en orchestre ou au conservatoire.",
+      "imageUrl": "",
+      "available": false,
+      "featured": false,
+      "published": true,
+      "order": 6
+    },
+    {
+      "id": "acc-vando",
+      "kind": "accessoire",
+      "title": "Bec Vandoren Optimum AL3",
+      "price": "129 €",
+      "text": "Alto. Un bec que Jérémie propose souvent après une révision, quand l’ancien est fendu ou trop fermé.",
+      "imageUrl": "",
+      "available": true,
+      "featured": false,
+      "published": true,
+      "order": 7
+    },
+    {
+      "id": "acc-s90",
+      "kind": "accessoire",
+      "title": "Bec Selmer S90 180",
+      "price": "179 €",
+      "text": "Ténor. En stock à l’atelier, à essayer sur votre instrument.",
+      "imageUrl": "",
+      "available": true,
+      "featured": false,
+      "published": true,
+      "order": 8
+    },
+    {
+      "id": "acc-4c",
+      "kind": "accessoire",
+      "title": "Bec Yamaha 4C",
+      "price": "39 €",
+      "text": "Alto, bec d’étude. Utile quand celui d’origine est cassé et qu’on ne veut pas changer de cadre.",
+      "imageUrl": "",
+      "available": true,
+      "featured": false,
+      "published": true,
+      "order": 9
+    },
+    {
+      "id": "acc-anches",
+      "kind": "accessoire",
+      "title": "Anches Vandoren Traditionnelles",
+      "price": "34 €",
+      "text": "Alto, force 2,5, boîte de 10. D’autres forces sur demande, si la boîte est ouverte on ne la reprend pas.",
+      "imageUrl": "",
+      "available": true,
+      "featured": false,
+      "published": true,
+      "order": 10
+    },
+    {
+      "id": "acc-legere",
+      "kind": "accessoire",
+      "title": "Anche Légère Signature",
+      "price": "31 €",
+      "text": "Alto, force 2,25. Une anche synthétique, pratique pour les répétitions d’harmonie.",
+      "imageUrl": "",
+      "available": true,
+      "featured": false,
+      "published": true,
+      "order": 11
+    },
+    {
+      "id": "acc-courroie",
+      "kind": "accessoire",
+      "title": "Courroie cuir",
+      "price": "28 €",
+      "text": "Pour alto ou ténor. Largeur confortable, crochet métal.",
+      "imageUrl": "",
+      "available": true,
+      "featured": false,
+      "published": true,
+      "order": 12
+    },
+    {
+      "id": "acc-ecouv",
+      "kind": "accessoire",
+      "title": "Écouvillon corps et bocal",
+      "price": "19 €",
+      "text": "Le geste d’après la répétition. Jérémie le rappelle à chaque restitution.",
+      "imageUrl": "",
+      "available": true,
+      "featured": false,
+      "published": true,
+      "order": 13
+    },
+    {
+      "id": "acc-graisse",
+      "kind": "accessoire",
+      "title": "Graisse de liège",
+      "price": "5 €",
+      "text": "Pour le bocal. Un peu suffit. Trop de graisse ramasse la poussière.",
+      "imageUrl": "",
+      "available": true,
+      "featured": false,
+      "published": true,
+      "order": 14
+    }
+  ],
+  "actualites": [
+    {
+      "id": "actu-etude",
+      "title": "Trois altos d’étude viennent d’être révisés",
+      "date": "2026-10-20",
+      "text": "Un YAS-280, un Jupiter et un alto d’étude Selmer sont sur l’étagère. Les trois sont passés par l’établi. Écrivez ou passez sur rendez-vous.",
+      "published": true
+    },
+    {
+      "id": "actu-delai",
+      "title": "Délai pour un retamponnage",
+      "date": "2026-09-02",
+      "text": "Comptez quatre semaines en ce moment, un peu plus si le corps a besoin d’une brasure. Pour les examens de janvier, déposez l’instrument avant la Toussaint.",
+      "published": true
+    },
+    {
+      "id": "actu-reprise",
+      "title": "Reprise le 1er septembre",
+      "date": "2026-08-18",
+      "text": "L’atelier est fermé jusqu’au 31 août. Les étuis déposés avant les congés sont pris dans l’ordre d’arrivée.",
+      "published": true
+    },
+    {
+      "id": "actu-aout",
+      "title": "Fermeture du mois d’août",
+      "date": "2026-06-04",
+      "text": "Vent Debout sera fermé du 3 au 31 août 2026. Les devis envoyés en juillet restent valables à la rentrée.",
+      "published": true
+    }
+  ]
+}

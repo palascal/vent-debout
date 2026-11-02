@@ -1,0 +1,28 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { formatDate, published } from '../lib/format';
+import { readSite } from '../lib/store';
+
+const news = published((await readSite()).actualites).sort((a, b) => b.date.localeCompare(a.date));
+---
+
+<BaseLayout title="Actualités" description="Actualités de l’atelier Vent Debout : délais, congés, instruments révisés.">
+  <header class="page-header">
+    <div class="container-narrow">
+      <p class="eyebrow">Atelier</p>
+      <h1>Actualités</h1>
+      <p class="tagline">Délais, congés, et ce qui vient d’être révisé. Le stock détaillé est dans la vente.</p>
+    </div>
+  </header>
+  <section class="block">
+    <div class="container-narrow news">
+      {news.map((item) => (
+        <article>
+          <p class="meta">{formatDate(item.date)}</p>
+          <h2>{item.title}</h2>
+          <p>{item.text}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

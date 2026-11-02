@@ -1,0 +1,112 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { brand } from '../config/site';
+import { featuredFirst, formatDate, published, telHref } from '../lib/format';
+import { readSite } from '../lib/store';
+import { CATEGORY_LABELS } from '../lib/types';
+import { href } from '../lib/url';
+
+const site = await readSite();
+const tarifs = featuredFirst(published(site.tarifs), 3);
+const works = featuredFirst(published(site.realisations), 2);
+const produits = featuredFirst(published(site.produits).filter((item) => item.available), 2);
+const news = published(site.actualites).sort((a, b) => b.date.localeCompare(a.date)).slice(0, 2);
+---
+
+<BaseLayout title="Accueil" description={`${brand.name} — ${site.coords.tagline}. Atelier de ${site.coords.repairer}.`}>
+  <section class="hero">
+    <div class="container-narrow">
+      <img class="hero-logo" src={href('images/ventdebout.jpeg')} alt="Logo Vent Debout" />
+      <p class="eyebrow">{site.coords.tagline}</p>
+      <h1>{brand.name}</h1>
+      <p class="lede">{site.coords.about}</p>
+      <p class="hero-links">
+        <a href={telHref(site.coords.phone)}>{site.coords.phone}</a>
+        <a href={`mailto:${site.coords.email}`}>{site.coords.email}</a>
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href={href('/tarifs/')}>Les tarifs</a>
+        <a class="btn btn-outline" href={href('/contact/')}>Prendre rendez-vous</a>
+      </div>
+    </div>
+  </section>
+
+  <nav class="section-nav" aria-label="Rubriques">
+    <ul>
+      <li><a href={href('/tarifs/')}><span>◎</span>Tarifs</a></li>
+      <li><a href={href('/realisations/')}><span>▣</span>Réalisations</a></li>
+      <li><a href={href('/vente/')}><span>♫</span>Vente</a></li>
+      <li><a href={href('/actualites/')}><span>✉</span>Actualités</a></li>
+    </ul>
+  </nav>
+
+  <section class="block">
+    <div class="container">
+      <h2 class="section-title">À l’établi</h2>
+      <div class="cards cols-3">
+        {tarifs.map((item) => (
+          <article>
+            <p class="kicker">{CATEGORY_LABELS[item.category]}</p>
+            <h3>{item.title}</h3>
+            <p>{item.detail}</p>
+            <p class="price">{item.price}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {works.length > 0 && (
+    <section class="block" style="padding-top:0">
+      <div class="container">
+        <h2 class="section-title">Dernières réalisations</h2>
+        <div class="works">
+          {works.map((item) => (
+            <article class="work">
+              <p class="kicker">{item.year}</p>
+              <h3>{item.title}</h3>
+              <p class="meta">{item.instrument}</p>
+              <p>{item.text}</p>
+            </article>
+          ))}
+        </div>
+        <p class="more"><a class="btn btn-outline" href={href('/realisations/')}>Toutes les réalisations</a></p>
+      </div>
+    </section>
+  )}
+
+  {produits.length > 0 && (
+    <section class="block" style="padding-top:0">
+      <div class="container">
+        <h2 class="section-title">En ce moment</h2>
+        <div class="products">
+          {produits.map((item) => (
+            <article class="product">
+              <p class="kicker">{item.kind === 'neuf' ? 'Neuf' : item.kind === 'occasion' ? 'Occasion' : 'Accessoire'}</p>
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+              <p class="price">{item.price}</p>
+            </article>
+          ))}
+        </div>
+        <p class="more"><a class="btn btn-outline" href={href('/vente/')}>La vente</a></p>
+      </div>
+    </section>
+  )}
+
+  {news.length > 0 && (
+    <section class="block" style="padding-top:0">
+      <div class="container-narrow news">
+        <h2 class="section-title">Actualités</h2>
+        {news.map((item) => (
+          <article>
+            <p class="meta">{formatDate(item.date)}</p>
+            <h3>{item.title}</h3>
+            <p>{item.text}</p>
+          </article>
+        ))}
+        <p class="more"><a class="btn btn-outline" href={href('/actualites/')}>Toutes les actualités</a></p>
+      </div>
+    </section>
+  )}
+</BaseLayout>

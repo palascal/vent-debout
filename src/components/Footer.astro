@@ -1,0 +1,26 @@
+---
+import { brand } from '../config/site';
+import { telHref } from '../lib/format';
+import { href } from '../lib/url';
+import type { SiteData } from '../lib/types';
+
+interface Props {
+  site: SiteData;
+}
+
+const { site } = Astro.props;
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <img src={href('images/ventdebout.jpeg')} alt="" width="72" height="72" />
+    <p class="footer-name">{brand.name}</p>
+    <p class="footer-meta">{site.coords.repairer} — {brand.activity}</p>
+    <p class="footer-links">
+      <a href={telHref(site.coords.phone)}>{site.coords.phone}</a>
+      <a href={`mailto:${site.coords.email}`}>{site.coords.email}</a>
+    </p>
+    <p class="copy">© {year} {brand.name}</p>
+  </div>
+</footer>

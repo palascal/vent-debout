@@ -1,0 +1,49 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { brand } from '../config/site';
+import { mapHref, telHref } from '../lib/format';
+import { readSite } from '../lib/store';
+
+const site = await readSite();
+const { coords } = site;
+const jsonLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  name: brand.name,
+  description: coords.tagline,
+  employee: coords.repairer,
+  email: coords.email,
+  telephone: coords.phone,
+  address: coords.address,
+});
+---
+
+<BaseLayout title="Contact" description={`Contacter ${brand.name}, ${coords.repairer}. ${coords.phone}.`}>
+  <header class="page-header">
+    <div class="container-narrow">
+      <p class="eyebrow">{coords.repairer}</p>
+      <h1>Contact</h1>
+      <p class="tagline">L’atelier reçoit sur rendez-vous. Décrivez l’instrument et le défaut : la réponse part de l’adresse ci-dessous.</p>
+    </div>
+  </header>
+  <section class="block">
+    <div class="container contact-grid">
+      <div>
+        <h2>Coordonnées</h2>
+        <p><a href={telHref(coords.phone)}>{coords.phone}</a></p>
+        <p><a href={`mailto:${coords.email}`}>{coords.email}</a></p>
+        <address>{coords.address}</address>
+        <p><a href={mapHref(coords.address)}>Voir le plan</a></p>
+      </div>
+      <div>
+        <h2>Horaires</h2>
+        <p>{coords.hours}</p>
+      </div>
+      <div>
+        <h2>Envoyer un instrument</h2>
+        <p>{coords.shipping}</p>
+      </div>
+    </div>
+  </section>
+  <script type="application/ld+json" set:html={jsonLd} />
+</BaseLayout>

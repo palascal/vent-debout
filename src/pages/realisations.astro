@@ -1,0 +1,32 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { byOrder, published } from '../lib/format';
+import { readSite } from '../lib/store';
+
+const works = byOrder(published(await readSite().then((site) => site.realisations)));
+---
+
+<BaseLayout title="Réalisations" description="Saxophones repris à l’atelier Vent Debout : retamponnage, brasure, débosselage.">
+  <header class="page-header">
+    <div class="container-narrow">
+      <p class="eyebrow">Établi</p>
+      <h1>Réalisations</h1>
+      <p class="tagline">Quelques instruments passés par l’atelier. Chaque fiche dit le travail fait : pas un catalogue, des saxophones repris un par un.</p>
+    </div>
+  </header>
+  <section class="block">
+    <div class="container works">
+      {works.map((item) => (
+        <article class="work">
+          <div class="visual">
+            {item.imageUrl ? <img src={item.imageUrl} alt="" /> : <span>{item.instrument}</span>}
+          </div>
+          <p class="kicker">{item.year}</p>
+          <h2>{item.title}</h2>
+          <p class="meta">{item.instrument}</p>
+          <p>{item.text}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

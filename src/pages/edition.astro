@@ -1,0 +1,78 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { readSite } from '../lib/store';
+
+const site = await readSite();
+const payload = JSON.stringify(site).replace(/</g, '\\u003c');
+const tabs = [
+  ['coords', 'Coordonnées'],
+  ['tarifs', 'Tarifs'],
+  ['realisations', 'Réalisations'],
+  ['produits', 'Vente'],
+  ['actualites', 'Actualités'],
+];
+---
+
+<BaseLayout title="Éditer" edit={false} description="Éditeur du site Vent Debout.">
+  <header class="page-header">
+    <div class="container">
+      <p class="eyebrow">Espace Jérémie</p>
+      <h1>Contenu du site</h1>
+      <p class="tagline">Les rubriques sont fixes. Vous modifiez les lignes, vous cochez Publié, vous enregistrez. Le téléphone, l’adresse, les tarifs et les instruments de cette proposition sont des exemples : remplacez-les ici.</p>
+      <p class="ed-save">
+        <button class="btn btn-primary" id="save" type="button">Enregistrer</button>
+        <a class="btn btn-outline" href={import.meta.env.BASE_URL} target="_blank" rel="noreferrer">Voir le site</a>
+        <span id="status" role="status"></span>
+      </p>
+    </div>
+  </header>
+  <section class="block edition">
+    <div class="container">
+      <div class="ed-tabs" id="tabs">
+        {tabs.map(([id, label]) => (
+          <button type="button" data-tab={id}>{label}</button>
+        ))}
+      </div>
+      <div id="panel"></div>
+    </div>
+  </section>
+  <script id="site-data" type="application/json" is:inline set:html={payload} />
+  <script>
+    import '../scripts/editor.ts';
+  </script>
+</BaseLayout>
+
+<style is:global>
+  .ed-save { display: flex; gap: 0.75rem; justify-content: center; align-items: center; flex-wrap: wrap; margin-top: 1.4rem; }
+  #status { color: var(--color-muted); font-size: 0.9rem; }
+  .ed-tabs { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.5rem; }
+  .ed-tabs button, .ed-btn {
+    border: 1px solid var(--color-border-light);
+    background: transparent;
+    color: var(--color-text);
+    font: 500 0.75rem/1 var(--font-sans);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.65rem 0.8rem;
+    cursor: pointer;
+  }
+  .ed-tabs button.is-on { border-color: var(--color-accent); color: var(--color-accent); }
+  .ed-card { border-top: 1px solid var(--color-border); padding: 1.2rem 0 1.4rem; }
+  .ed-card h3 { margin: 0 0 0.8rem; font-size: 1.6rem; }
+  .ed-grid { display: grid; gap: 0.8rem; }
+  @media (min-width: 800px) { .ed-grid { grid-template-columns: 1fr 1fr; } }
+  .ed-field { display: grid; gap: 0.3rem; }
+  .ed-field span { color: var(--color-muted); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; }
+  .ed-field input, .ed-field textarea, .ed-field select {
+    width: 100%;
+    padding: 0.7rem 0.75rem;
+    background: #111;
+    color: #fff;
+    border: 1px solid var(--color-border-light);
+    font: inherit;
+  }
+  .ed-field textarea { min-height: 7rem; }
+  .ed-check { display: flex; gap: 0.5rem; align-items: center; color: var(--color-muted); }
+  .ed-actions { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.8rem; }
+  .ed-btn.danger { color: #e7b2b2; border-color: #8a4a4a; }
+</style>

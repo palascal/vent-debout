@@ -1,0 +1,50 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import EditionBar from '../components/EditionBar.astro';
+import { brand } from '../config/site';
+import { readSite } from '../lib/store';
+import { href } from '../lib/url';
+
+interface Props {
+  title?: string;
+  description?: string;
+  edit?: boolean;
+}
+
+const { title, description, edit = true } = Astro.props;
+const site = await readSite();
+const pageTitle = title ? `${title} — ${brand.name}` : `${brand.name} — ${brand.activity}`;
+const summary = description || site.coords.about;
+---
+
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={summary} />
+    <link rel="icon" href={href('favicon.svg')} type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    {site.coords.promo && (
+      <div class="promo">
+        <div class="container promo-inner">
+          <p>{site.coords.promo}</p>
+          {site.coords.promoLabel && <a href={href(site.coords.promoHref)}>{site.coords.promoLabel}</a>}
+        </div>
+      </div>
+    )}
+    <Header repairer={site.coords.repairer} />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer site={site} />
+    {edit && import.meta.env.DEV && <EditionBar />}
+  </body>
+</html>

@@ -1,0 +1,41 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { byOrder, published } from '../lib/format';
+import { readSite } from '../lib/store';
+import { CATEGORY_LABELS, TARIF_CATEGORIES } from '../lib/types';
+
+const site = await readSite();
+const tarifs = byOrder(published(site.tarifs));
+---
+
+<BaseLayout title="Tarifs" description="Tarifs de l’atelier Vent Debout : révision, brasures, retamponnage, débosselage.">
+  <header class="page-header">
+    <div class="container-narrow">
+      <p class="eyebrow">Atelier</p>
+      <h1>Tarifs</h1>
+      <p class="tagline">Montants de l’atelier pour un saxophone en état courant. Un choc, une clé cassée ou un bouchage très fatigué se chiffrent après examen, avant de commencer.</p>
+    </div>
+  </header>
+  <section class="block">
+    <div class="container menu">
+      {TARIF_CATEGORIES.map((category) => {
+        const rows = tarifs.filter((item) => item.category === category);
+        if (!rows.length) return null;
+        return (
+          <section id={category}>
+            <h2>{CATEGORY_LABELS[category]}</h2>
+            {rows.map((item) => (
+              <article class="price-row">
+                <header>
+                  <h3>{item.title}</h3>
+                  <p class="amount">{item.price}</p>
+                </header>
+                {item.detail && <p>{item.detail}</p>}
+              </article>
+            ))}
+          </section>
+        );
+      })}
+    </div>
+  </section>
+</BaseLayout>

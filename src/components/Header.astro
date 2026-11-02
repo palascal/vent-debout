@@ -1,0 +1,85 @@
+---
+import { brand } from '../config/site';
+import { href } from '../lib/url';
+
+interface Props {
+  repairer: string;
+}
+
+const { repairer } = Astro.props;
+const path = Astro.url.pathname;
+const links = [
+  { href: href('/'), label: 'Accueil' },
+  { href: href('/tarifs/'), label: 'Tarifs' },
+  { href: href('/realisations/'), label: 'Réalisations' },
+  {
+    href: href('/vente/'),
+    label: 'Vente',
+    children: [
+      { href: href('/vente/#neuf'), label: 'Neuf' },
+      { href: href('/vente/#occasions'), label: 'Occasions' },
+      { href: href('/vente/#accessoires'), label: 'Accessoires' },
+    ],
+  },
+  { href: href('/actualites/'), label: 'Actualités' },
+  { href: href('/contact/'), label: 'Contact' },
+];
+
+function active(target: string) {
+  const home = href('/');
+  if (target === home) return path === home;
+  return path === target || path.startsWith(target);
+}
+---
+
+<header class="site-header">
+  <div class="header-inner container">
+    <a class="brand" href={href('/')}>
+      <img src={href('images/ventdebout.jpeg')} alt="" width="42" height="42" />
+      <span class="brand-name">{brand.name}</span>
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav">
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+      <span class="sr-only">Menu</span>
+    </button>
+    <nav id="main-nav" class="nav" aria-label="Menu principal">
+      <ul class="nav-list">
+        {links.map((item) => (
+          <li class:list={['nav-item', { 'has-children': item.children }]}>
+            <a class:list={['nav-link', { active: active(item.href) }]} href={item.href}>{item.label}</a>
+            {item.children && (
+              <ul class="subnav">
+                {item.children.map((child) => (
+                  <li><a href={child.href}>{child.label}</a></li>
+                ))}
+              </ul>
+            )}
+          </li>
+        ))}
+      </ul>
+      <p class="sr-only">{repairer}</p>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const toggle = document.querySelector('.nav-toggle');
+  const nav = document.getElementById('main-nav');
+  const header = document.querySelector('.site-header');
+  toggle?.addEventListener('click', () => {
+    const open = nav?.classList.toggle('open');
+    header?.classList.toggle('menu-open', Boolean(open));
+    toggle.setAttribute('aria-expanded', String(Boolean(open)));
+    document.body.classList.toggle('nav-open', Boolean(open));
+  });
+  nav?.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => {
+      nav.classList.remove('open');
+      header?.classList.remove('menu-open');
+      toggle?.setAttribute('aria-expanded', 'false');
+      document.body.classList.remove('nav-open');
+    });
+  });
+</script>
