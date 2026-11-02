@@ -1,5 +1,7 @@
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
+import { list, put } from '@vercel/blob';
+import seed from '../../data/site.json';
 import {
   PRODUCT_KINDS,
   TARIF_CATEGORIES,
@@ -14,6 +16,11 @@ import {
 } from './types';
 
 const FILE = path.join(process.cwd(), 'data', 'site.json');
+const BLOB_PATH = 'site/content.json';
+
+function blobToken(): string | undefined {
+  return process.env.BLOB_READ_WRITE_TOKEN || undefined;
+}
 
 function text(value: unknown, max = 5000): string {
   return typeof value === 'string' ? value.trim().slice(0, max) : '';
@@ -122,14 +129,51 @@ function actu(value: unknown): Actu {
   };
 }
 
+async function readBlob(): Promise<SiteData | null> {
+  const token = blobToken();
+  if (!token) return null;
+  const { blobs } = await list({ prefix: 'site/', token });
+  const content = blobs.find((blob) => blob.pathname === BLOB_PATH);
+  if (!content) return null;
+  const response = await fetch(`${content.url}?t=${Date.now()}`, { cache: 'no-store' });
+  if (!response.ok) return null;
+  return normalize(await response.json());
+}
+
+async function readFileSite(): Promise<SiteData> {
+  try {
+    const raw = await readFile(FILE, 'utf8');
+    return normalize(JSON.parse(raw));
+  } catch {
+    return normalize(seed);
+  }
+}
+
 export async function readSite(): Promise<SiteData> {
-  const raw = await readFile(FILE, 'utf8');
-  return normalize(JSON.parse(raw));
+  try {
+    const remote = await readBlob();
+    if (remote) return remote;
+  } catch (error) {
+    console.warn('[cms] lecture blob impossible:', error);
+  }
+  return readFileSite();
 }
 
 export async function writeSite(input: unknown): Promise<SiteData> {
   const site = normalize(input);
-  await mkdir(path.dirname(FILE), { recursive: true });
-  await writeFile(FILE, `${JSON.stringify(site, null, 2)}\n`, 'utf8');
+  const token = blobToken();
+  if (token) {
+    await put(BLOB_PATH, JSON.stringify(site, null, 2), {
+      access: 'public',
+      token,
+      contentType: 'application/json',
+      addRandomSuffix: false,
+      allowOverwrite: true,
+    });
+  }
+  if (!token || import.meta.env.DEV) {
+    await mkdir(path.dirname(FILE), { recursive: true });
+    await writeFile(FILE, `${JSON.stringify(site, null, 2)}\n`, 'utf8');
+  }
   return site;
 }

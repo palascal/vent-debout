@@ -254,11 +254,6 @@ document.getElementById('tabs')?.addEventListener('click', (event) => {
   render();
 });
 
-if (import.meta.env.PROD) {
-  saveButton.hidden = true;
-  status.textContent = 'Site publié, en lecture seule. Les modifications se font en local avec npm run dev.';
-}
-
 saveButton.addEventListener('click', async () => {
   saveButton.setAttribute('disabled', 'true');
   status.textContent = 'Enregistrement…';
